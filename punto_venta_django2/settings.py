@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-wn#2b@cida%ogw41!59#&0yis8kbud=)7hjp@wjem_27)qhp_(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -77,8 +77,15 @@ WSGI_APPLICATION = 'punto_venta_django2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '192.168.100.7',
+        'NAME': 'pdv2',
+        'USER': 'root',
+        'PASSWORD': 'Temporal100*',
+        'PORT': '3306',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        },
     }
 }
 
