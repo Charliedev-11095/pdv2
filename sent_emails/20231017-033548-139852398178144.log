@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?q?Restablecimiento_de_la_contrase=C3=B1a_en_0=2E0=2E0=2E0=3A8000_?=
+From: webmaster@localhost
+To: carlos@gmail.com
+Date: Tue, 17 Oct 2023 03:35:48 -0000
+Message-ID: <169751374850.245.4471071328297848484@0f0f2aef3a86>
+
+
+Usted está recibiendo este correo electrónico porque ha solicitado un restablecimiento de contraseña para la cuenta de usuario en 0.0.0.0:8000.
+
+Por favor visite la página que se muestra a continuación y elija una nueva contraseña:
+
+http://0.0.0.0:8000/accounts/reset/MQ/bw73bo-4904d89e419627277c193334e40feac1/
+
+Su nombre de usuario, en caso de que lo haya olvidado: carlos
+
+¡Gracias por usar nuestro sitio!
+
+El equipo de 0.0.0.0:8000
+
+
+
+-------------------------------------------------------------------------------

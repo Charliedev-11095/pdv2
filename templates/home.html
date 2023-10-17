@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% comment %} {% extends 'base.html' %}
 
 {%load static %}
 <link rel="icon" type="image/x-icon" href="{% static 'assets/img/illustrations/favicon.png'%}" />
@@ -8,7 +8,6 @@
 {% block content %}
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
-<p><a href="{% url 'logout' %}">Log Out</a></p>
 <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
 {% else %}
 <p>Aún no estás logueado</p>
@@ -20,4 +19,4 @@ Hi {{ user.username }}!
 {% endif %}
 
 
-{% endblock %}
+{% endblock %} {% endcomment %}

@@ -9,6 +9,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),  # new
     path("accounts/", include("django.contrib.auth.urls")),
-    path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    path("accounts/login/", TemplateView.as_view(template_name="registration/login.html"), name="home"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
