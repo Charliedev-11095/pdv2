@@ -1,11 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
 
-
+# Create your models here.
 
 class User(models.Model):
     username = models.CharField(max_length=100)
-
 
 class DetallesUsuario(models.Model):
     GENDER_CHOICES = [
@@ -29,12 +27,3 @@ class DetallesUsuario(models.Model):
     def __str__(self):
         return self.full_name
     
-class Domicilio(models.Model):
-    calle = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return self.calle
-
