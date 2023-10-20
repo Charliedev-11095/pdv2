@@ -52,14 +52,11 @@ WSGI_APPLICATION = 'punto_venta_django2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '192.168.100.7',
+        'HOST': '192.168.100.5',
         'NAME': 'pdv2',
         'USER': 'root',
         'PASSWORD': 'Temporal100*',
         'PORT': '3306',
-        'OPTIONS': {
-            'sql_mode': 'traditional',
-        },
     }
 }
 
