@@ -12,7 +12,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cuentas',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +52,7 @@ WSGI_APPLICATION = 'punto_venta_django2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '192.168.100.6',
+        'HOST': '192.168.100.8',
         'NAME': 'pdv2',
         'USER': 'root',
         'PASSWORD': 'Temporal100*',
