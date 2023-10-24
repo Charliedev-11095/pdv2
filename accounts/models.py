@@ -21,13 +21,13 @@ class DatosPersonales(models.Model):
     birth_date = models.DateField()
     role = models.CharField(("rol"),max_length=13, choices=ROLE_CHOICES, blank=True)
     domicilio =models.ForeignKey('Domicilio', on_delete=models.CASCADE, null=False, blank=True)
+    
+    class Meta:
+        verbose_name = 'Dato Personal'
+        verbose_name_plural = 'Datos Personales'
 
     def __str__(self):
         return self.last_name
-    
-class Meta:
-    verbose_name = 'Dato Personal'
-    verbose_name_plural = 'Datos Personales'
     
 class Domicilio(models.Model):
     calle = models.CharField(max_length=100)
