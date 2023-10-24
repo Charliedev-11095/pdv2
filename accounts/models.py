@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 
 
-class DatosPersonales(models.Model):
+class Usuario(models.Model):
     GENDER_CHOICES = [
         ('masculino', 'Masculino'),
         ('femenino', 'Femenino'),
@@ -15,13 +15,16 @@ class DatosPersonales(models.Model):
         ('cliente', 'Cliente'),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    last_name = models.CharField(("Apellido Materno"),max_length=100, blank=True)
-    phone = models.CharField(("teléfono"),max_length=10, blank=True)
-    gender = models.CharField(("género"),max_length=9, choices=GENDER_CHOICES, blank=True)
+    nombre = models.CharField(("Nombre"),max_length=100, blank=True)
+    apellido_paterno = models.CharField(("Apellido Paterno"),max_length=100, blank=True)
+    apellido_materno = models.CharField(("Apellido Materno"),max_length=100, blank=True)
+    genero = models.CharField(("género"),max_length=9, choices=GENDER_CHOICES, blank=True)
     birth_date = models.DateField()
     role = models.CharField(("rol"),max_length=13, choices=ROLE_CHOICES, blank=True)
     domicilio =models.ForeignKey('Domicilio', on_delete=models.CASCADE, null=False, blank=True)
-    
+    datos_contacto = models.ForeignKey('DatosContacto', on_delete=models.CASCADE, null=False, blank=True)
+    datos_fiscales= models.ForeignKey('DatosFiscales', on_delete=models.CASCADE, null=True, blank=True)
+
     class Meta:
         verbose_name = 'Dato Personal'
         verbose_name_plural = 'Datos Personales'
@@ -70,6 +73,7 @@ class DatosFiscales(models.Model):
     razon_social = models.CharField(max_length=50, null=True)
     direccion = models.ForeignKey(Domicilio, null=False, blank=False,on_delete=models.CASCADE)
     
+
     def __str__(self):
         return self.rfc + ' ' + self.razon_social + ' ' 
 
@@ -77,27 +81,11 @@ class DatosFiscales(models.Model):
         verbose_name = 'Dato Fiscal'
         verbose_name_plural = 'Datos Fiscales'
 
-class UsuariosAcceso(models.Model):
-    datos_personales = models.ForeignKey(DatosPersonales,null=False,on_delete=models.CASCADE)
-    datos_contacto = models.ForeignKey(DatosContacto,null=False,on_delete=models.CASCADE)
-    contrasena = models.CharField(max_length=50,null=False)
-    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    tipo = models.CharField(max_length=1)
-
-    def __str__(self):
-        return self.datos_personales.nombre + ' ' + self.datos_personales.apellidos
-
-    class Meta:
-        verbose_name = 'Usuario de Acceso'
-        verbose_name_plural = 'Usuarios de Acceso'
-
-
 #Tabla de clientes
 class Clientes(models.Model):
-    datos_personales = models.ForeignKey(DatosPersonales,null=False,on_delete=models.CASCADE)
-    datos_contacto = models.ForeignKey(DatosContacto,null=False,blank=False,on_delete=models.CASCADE)
-    datos_fiscales = models.ForeignKey(DatosFiscales,null=True,on_delete=models.CASCADE)
-    
+    usuario=models.ForeignKey(Usuario,null=True,blank=False,on_delete=models.SET_NULL)
+    id_cliente = models.CharField(max_length=50, null=True)
+
     def __str__(self):
         return self.datos_personales.nombre + ' ' + self.datos_personales.apellidos
    
@@ -105,6 +93,17 @@ class Clientes(models.Model):
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
 
+class Empleados(models.Model):
+    usuario=models.ForeignKey(Usuario,null=True,blank=False,on_delete=models.SET_NULL)
+    id_empleado = models.CharField(max_length=50, null=False)
+    puesto = models.CharField(max_length=50,null=False)
+
+    def __str__(self):
+        return self.datos_personales.nombre + ' ' + self.datos_personales.apellidos
+
+    class Meta:
+        verbose_name = 'Empleado'
+        verbose_name_plural = 'Empleados'
 
 class Negocio(models.Model):
     contacto = models.ForeignKey(DatosContacto, null=False, blank=False,on_delete=models.CASCADE)
@@ -181,7 +180,7 @@ class MovimientosCaja(models.Model):
     tipo_movimiento = models.CharField(max_length=1,choices=OPCIONMOVIMIENTO)
     saldo_inicial = models.DecimalField(max_digits=10, decimal_places=2)
     saldo_final = models.DecimalField(max_digits=10, decimal_places=2)
-    empleado = models.ForeignKey(UsuariosAcceso,null=True,blank=False,on_delete=models.SET_NULL)
+    empleado = models.ForeignKey(Empleados,null=True,blank=False,on_delete=models.SET_NULL)
     
     def __str__(self):
         return self.caja.nombre + ' ' + self.tipo_movimiento + ' ' + str(self.saldo_inicial) + ' ' + str(self.saldo_final)
@@ -208,7 +207,7 @@ class Ventas(models.Model):
     metodo_pago = models.CharField(max_length=1, choices=METODOPAGOS)
     importe_pagado = models.DecimalField(max_digits=10, decimal_places=2)
     vuelto = models.DecimalField(max_digits=10, decimal_places=2)
-    empleado = models.ForeignKey(UsuariosAcceso,null=True,blank=False, on_delete=models.SET_NULL)
+    empleado = models.ForeignKey(Empleados,null=True,blank=False, on_delete=models.SET_NULL)
     
     def __str__(self):
         return self.cliente.datos_personales.nombre + ' ' + self.cliente.datos_personales.apellidos + ' ' + str(self.total) + ' ' + str(self.total_descuento) + ' ' + str(self.total_impuesto) + ' ' + self.caja.nombre + ' ' + self.metodo_pago + ' ' + str(self.importe_pagado) + ' ' + str(self.vuelto) + ' ' + self.empleado.datos_personales.nombre + ' ' + self.empleado.datos_personales.apellidos

@@ -1,13 +1,12 @@
 from django.contrib import admin
 
 
-from .models import DatosPersonales, Domicilio, Marca, DatosContacto ,DatosFiscales, UsuariosAcceso, Clientes, Negocio, DepartamentoProducto, UnidadesMedidaProducto, Productos, Cajas, MovimientosCaja, Ventas, DetalleVentas
-admin.site.register(DatosPersonales)
+from .models import Usuario, Domicilio, Marca, DatosContacto ,DatosFiscales, Clientes, Negocio, DepartamentoProducto, UnidadesMedidaProducto, Productos, Cajas, MovimientosCaja, Ventas, DetalleVentas
+admin.site.register(Usuario)
 admin.site.register(Domicilio)
 admin.site.register(Marca)
 admin.site.register(DatosContacto)
 admin.site.register(DatosFiscales)
-admin.site.register(UsuariosAcceso)
 admin.site.register(Clientes)
 admin.site.register(Negocio)
 admin.site.register(DepartamentoProducto)
