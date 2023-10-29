@@ -14,6 +14,7 @@
                         { "data": "Fecha de Nacimiento" },
                         { "data": "Correo Electrónico" },
                         { "data": "Teléfono" },
+                        { "data": "Celular" },
                         { "data": "Rol" },
                         { "data": "RFC" },
                         { "data": "Razón Social" },
