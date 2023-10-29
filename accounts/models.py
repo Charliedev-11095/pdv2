@@ -34,6 +34,7 @@ class Usuario(models.Model):
     
 class Domicilio(models.Model):
     calle = models.CharField(max_length=100)
+    numero = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=100)
     estado = models.CharField(max_length=100)
     pais = models.CharField(max_length=100)
@@ -234,3 +235,26 @@ class DetalleVentas(models.Model):
         verbose_name = 'Detalle de Venta'
         verbose_name_plural = 'Detalle de Ventas'
 
+# -------------------------------------VISTAS SQL -------------------------------------
+
+class Vistadatosusuarios(models.Model):
+    usuario_id = models.BigIntegerField(primary_key=True)
+    nombre = models.CharField(db_column='Nombre', max_length=100, db_collation='utf8mb4_general_ci')  # Field name made lowercase.
+    apellido_paterno = models.CharField(db_column='Apellido Paterno', max_length=100, db_collation='utf8mb4_general_ci')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    apellido_materno = models.CharField(db_column='Apellido Materno', max_length=100, db_collation='utf8mb4_general_ci')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    género = models.CharField(db_column='Género', max_length=9, db_collation='utf8mb4_general_ci')  # Field name made lowercase.
+    fecha_de_nacimiento = models.DateField(db_column='Fecha de Nacimiento')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    rol = models.CharField(db_column='Rol', max_length=13, db_collation='utf8mb4_general_ci')  # Field name made lowercase.
+    calle = models.CharField(db_column='Calle', max_length=100, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
+    ciudad = models.CharField(db_column='Ciudad', max_length=100, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
+    estado = models.CharField(db_column='Estado', max_length=100, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
+    país = models.CharField(db_column='País', max_length=100, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
+    teléfono = models.CharField(db_column='Teléfono', max_length=10, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
+    celular = models.CharField(db_column='Celular', max_length=10, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
+    correo_electrónico = models.CharField(db_column='Correo Electrónico', max_length=250, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    rfc = models.CharField(db_column='RFC', max_length=13, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
+    razón_social = models.CharField(db_column='Razón Social', max_length=50, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'VistaDatosUsuarios'
