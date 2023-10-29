@@ -12,6 +12,7 @@
                         { "data": "Apellido Materno" },
                         { "data": "Género" },
                         { "data": "Fecha de Nacimiento" },
+                        { "data": "Status" },
                         { "data": "Correo Electrónico" },
                         { "data": "Teléfono" },
                         { "data": "Celular" },

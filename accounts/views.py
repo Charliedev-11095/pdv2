@@ -29,6 +29,7 @@ def listaUsuarios(request):
              'Apellido Materno': item.apellido_materno,
              'Género': item.género,
              'Fecha de Nacimiento': item.fecha_de_nacimiento.strftime('%Y-%m-%d'),
+             'Status': '<div class="badge bg-success text-white rounded-pill">Activo</div>' if item.status else '<div class="badge bg-danger text-white rounded-pill">Inactivo</div>',
              'Rol': item.rol,
              'Calle': item.calle,
              'Ciudad': item.ciudad,

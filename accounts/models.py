@@ -20,6 +20,7 @@ class Usuario(models.Model):
     apellido_materno = models.CharField(("Apellido Materno"),max_length=100, blank=True)
     genero = models.CharField(("género"),max_length=9, choices=GENDER_CHOICES, blank=True)
     birth_date = models.DateField()
+    status = models.BooleanField(("status"), default=True)
     role = models.CharField(("rol"),max_length=13, choices=ROLE_CHOICES, blank=True)
     domicilio =models.ForeignKey('Domicilio', on_delete=models.CASCADE, null=False, blank=True)
     datos_contacto = models.ForeignKey('DatosContacto', on_delete=models.CASCADE, null=False, blank=True)
@@ -244,6 +245,7 @@ class Vistadatosusuarios(models.Model):
     apellido_materno = models.CharField(db_column='Apellido Materno', max_length=100, db_collation='utf8mb4_general_ci')  # Field name made lowercase. Field renamed to remove unsuitable characters.
     género = models.CharField(db_column='Género', max_length=9, db_collation='utf8mb4_general_ci')  # Field name made lowercase.
     fecha_de_nacimiento = models.DateField(db_column='Fecha de Nacimiento')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    status = models.BooleanField(db_column='Status')  # Field name made lowercase.
     rol = models.CharField(db_column='Rol', max_length=13, db_collation='utf8mb4_general_ci')  # Field name made lowercase.
     calle = models.CharField(db_column='Calle', max_length=100, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
     ciudad = models.CharField(db_column='Ciudad', max_length=100, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
