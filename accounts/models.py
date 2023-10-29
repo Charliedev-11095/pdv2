@@ -30,7 +30,7 @@ class Usuario(models.Model):
         verbose_name_plural = 'Datos Personales'
 
     def __str__(self):
-        return self.last_name
+        return f"{self.apellido_paterno} {self.apellido_materno}"
     
 class Domicilio(models.Model):
     calle = models.CharField(max_length=100)
