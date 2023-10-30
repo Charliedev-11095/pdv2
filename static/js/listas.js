@@ -13,16 +13,17 @@
                         { "data": "Género" },
                         { "data": "Fecha de Nacimiento" },
                         { "data": "Status" },
-                        { "data": "Correo Electrónico" },
-                        { "data": "Teléfono" },
-                        { "data": "Celular" },
                         { "data": "Rol" },
-                        { "data": "RFC" },
-                        { "data": "Razón Social" },
                         { "data": "Calle" },
                         { "data": "Ciudad" },
                         { "data": "Estado" },
                         { "data": "País" },
+                        { "data": "Teléfono" },
+                        { "data": "Celular" },
+                        { "data": "Correo Electrónico" },
+                        { "data": "RFC" },
+                        { "data": "Razón Social" },
+                        
                         {
                             "data": null,
                             "defaultContent": "<button>Edit</button> <button>Delete</button>"
