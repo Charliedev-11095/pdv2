@@ -31,7 +31,7 @@ class Usuario(models.Model):
         verbose_name_plural = 'Datos Personales'
 
     def __str__(self):
-        return f"{self.apellido_paterno} {self.apellido_materno}"
+        return f"{self.nombre} {self.apellido_paterno} {self.apellido_materno}"
     
 class Domicilio(models.Model):
     calle = models.CharField(max_length=100)
@@ -238,14 +238,16 @@ class DetalleVentas(models.Model):
 
 # -------------------------------------VISTAS SQL -------------------------------------
 
+from django.db import models
+
+
 class Vistadatosusuarios(models.Model):
-    usuario_id = models.BigIntegerField(primary_key=True)
+    usuario_id = models.BigIntegerField(primary_key=True, db_column='usuario_id')  # Field name made lowercase.
     nombre = models.CharField(db_column='Nombre', max_length=100, db_collation='utf8mb4_general_ci')  # Field name made lowercase.
     apellido_paterno = models.CharField(db_column='Apellido Paterno', max_length=100, db_collation='utf8mb4_general_ci')  # Field name made lowercase. Field renamed to remove unsuitable characters.
     apellido_materno = models.CharField(db_column='Apellido Materno', max_length=100, db_collation='utf8mb4_general_ci')  # Field name made lowercase. Field renamed to remove unsuitable characters.
     género = models.CharField(db_column='Género', max_length=9, db_collation='utf8mb4_general_ci')  # Field name made lowercase.
     fecha_de_nacimiento = models.DateField(db_column='Fecha de Nacimiento')  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    status = models.BooleanField(db_column='Status')  # Field name made lowercase.
     rol = models.CharField(db_column='Rol', max_length=13, db_collation='utf8mb4_general_ci')  # Field name made lowercase.
     calle = models.CharField(db_column='Calle', max_length=100, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
     ciudad = models.CharField(db_column='Ciudad', max_length=100, db_collation='utf8mb4_general_ci', blank=True, null=True)  # Field name made lowercase.
